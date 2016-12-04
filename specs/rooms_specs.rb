@@ -18,15 +18,29 @@ class RoomSpec < MiniTest::Test
 
   def test_can_add_guest
     room = Room.new()
-    guest = Guest.new("James")
+    guest = Guest.new("James", 20)
     room.add_guest(guest)
     assert_equal(1, room.number_of_guests)
   end
 
+  def test_can_check_customer_money
+    room = Room.new()
+    guest = Guest.new("James", 20)
+    room.add_guest(guest)
+    assert_equal(20, guest.cash())
+  end
+
+  def test_make_them_pay_for_entry
+    room = Room.new()
+    guest = Guest.new("James", 20)
+    guest.pay_entry()
+    assert_equal(15, guest.cash)
+  end
+
   def test_can_add_two_guests
     room = Room.new()
-    guest1 = Guest.new("James")
-    guest2 = Guest.new("Zach")
+    guest1 = Guest.new("James", 20)
+    guest2 = Guest.new("Zach", 12)
 
     room.add_guest(guest1)
     room.add_guest(guest2)
@@ -36,12 +50,12 @@ class RoomSpec < MiniTest::Test
 
   def test_can_add_five_guests
     room = Room.new()
-    guest1 = Guest.new("James")
-    guest2 = Guest.new("Zach")
-    guest3 = Guest.new("Nina")
-    guest4 = Guest.new("Harold")
-    guest5 = Guest.new("Andrea")
-    guest6 = Guest.new("Thea")
+    guest1 = Guest.new("James", 20)
+    guest2 = Guest.new("Zach", 12)
+    guest3 = Guest.new("Nina", 23)
+    guest4 = Guest.new("Harold", 25)
+    guest5 = Guest.new("Andrea", 15)
+    guest6 = Guest.new("Thea", 5)
 
     room.add_guest(guest1)
     room.add_guest(guest2)
@@ -54,7 +68,7 @@ class RoomSpec < MiniTest::Test
     
   def test_can_check_out_guest
     room = Room.new()
-    guest = Guest.new("James")
+    guest = Guest.new("James", 20)
     room.add_guest(guest)
     removed_guest = room.remove_guest(guest)
     assert_equal(0, room.number_of_guests)

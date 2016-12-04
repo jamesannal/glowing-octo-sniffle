@@ -1,5 +1,7 @@
 class Room
 
+  attr_accessor :room_array, :song_list
+
   def initialize()
     @room_array = []
     @song_list = []
@@ -28,5 +30,7 @@ class Room
   def add_song(song)
     @song_list.push(song)
   end
+
+ 
 
 end
