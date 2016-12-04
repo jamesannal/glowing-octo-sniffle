@@ -5,7 +5,7 @@ require_relative("../guests")
 class GuestSpec < MiniTest::Test
 
   def setup
-    @guest = Guest.new("James")
+    @guest = Guest.new("James", 20)
   end
 
   def test_can_create_guest
